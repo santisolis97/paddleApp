@@ -10,11 +10,15 @@ function AddCourtModal() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(newCourt);
-    db.collection("courts").add({
-      name: newCourt.name,
-      address: newCourt.address,
-      price: newCourt.price,
-    });
+    db.collection("courts")
+      .add({
+        name: newCourt.name,
+        address: newCourt.address,
+        price: newCourt.price,
+      })
+      .then((result) => {
+        console.log("Guardado correctamente");
+      });
 
     // this.setState({ title: "", author: "" });
   };
