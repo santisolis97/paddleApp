@@ -17,7 +17,7 @@ function Home() {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log(data);
+        console.log("aca", data);
         setCourts(data);
       });
   };
@@ -36,6 +36,7 @@ function Home() {
             name={item.name}
             address={item.address}
             price={item.price}
+            photo={item.photo}
           ></Card>
         );
       })}

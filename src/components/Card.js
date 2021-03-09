@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import Courtimg from "../assets/court1.png";
 function Card(props) {
   var id = props.id;
+  console.log(props);
   return (
     <div>
       <div className="card " styles="width: 18rem;">
-        <img src={Courtimg} alt="Not working" />
+        <img src={props.photo} alt="Not working" />
         <div className="card-body">
           <h5 className="card-title">{props.name}</h5>
           <p className="card-text">
