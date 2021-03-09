@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Courtimg from "../assets/court1.png";
 function Card(props) {
   var id = props.id;
-  console.log(props);
   return (
     <div>
       <div className="card " styles="width: 18rem;">

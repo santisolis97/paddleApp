@@ -17,7 +17,6 @@ function Home() {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log("aca", data);
         setCourts(data);
       });
   };

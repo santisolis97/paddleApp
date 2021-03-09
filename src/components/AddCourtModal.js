@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import db from "../firebase.config";
 import Navbar from "./Navbar";
 import { storage } from "../firebase.config";
-
+import "./AddCourtModal.css";
 function AddCourtModal() {
   const [newCourt, setNewCourt] = useState({
     name: "",
     address: "",
     price: "",
+    photo: "",
   });
-  const [downloadUrl, setDownloadUrl] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const handleInputChange = (event) => {
     if (
@@ -24,7 +25,6 @@ function AddCourtModal() {
     } else {
       setNewCourt({ ...newCourt, photo: event.target.files[0] });
     }
-    console.log(newCourt);
   };
 
   const handleStorage = (event) => {
@@ -35,7 +35,6 @@ function AddCourtModal() {
       .then(function (snapshot) {
         handleFirestore();
       });
-    console.log(newCourt);
   };
 
   const handleFirestore = () => {
@@ -53,21 +52,19 @@ function AddCourtModal() {
           })
           .then((result) => {
             console.log("Guardado correctamente");
+            setIsLoaded(true);
+            setTimeout(() => {
+              setIsLoaded(false);
+              setNewCourt({
+                name: "",
+                address: "",
+                price: "",
+                photo: "",
+              });
+            }, 5000);
           });
       });
   };
-
-  // const saveUrl = (photoName) => {
-  //   storage
-  //     .ref("images")
-  //     .child(photoName)
-  //     .getDownloadURL()
-  //     .then((url) => {
-  //       console.log(photoName);
-  //       console.log(url);
-  //       return url;
-  //     });
-  // };
 
   return (
     <div className="div">
@@ -84,6 +81,7 @@ function AddCourtModal() {
               id="name"
               name="name"
               onChange={handleInputChange}
+              value={newCourt.name}
             />
           </div>
           <div className="mb-3">
@@ -96,6 +94,7 @@ function AddCourtModal() {
               id="address"
               name="address"
               onChange={handleInputChange}
+              value={newCourt.address}
             />
           </div>
           <div className="mb-3">
@@ -108,6 +107,7 @@ function AddCourtModal() {
               id="price"
               name="price"
               onChange={handleInputChange}
+              value={newCourt.price}
             />
           </div>
           <div className="mb-3">
@@ -126,6 +126,14 @@ function AddCourtModal() {
             Agregar
           </button>
         </form>
+        {isLoaded && (
+          <div
+            className="alert alert-success alert-dismissible fade show"
+            role="alert"
+          >
+            Se ha cargado correctamente la cancha
+          </div>
+        )}
       </div>
     </div>
   );
