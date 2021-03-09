@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div>
@@ -8,17 +8,9 @@ function Navbar() {
           <a href="/" className="navbar-brand">
             PaddleApp
           </a>
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-dark " disabled="true">
-              Buscar
-            </button>
-          </form>
+          <Link to="/AddCourt" className="btn btn-primary">
+            Agregar cancha
+          </Link>
         </div>
       </nav>
     </div>

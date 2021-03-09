@@ -15,7 +15,7 @@ function Card(props) {
           <p className="card-text">
             Precio: <b>${props.price}/hr.</b>
           </p>
-          <Link to={`/${id}`} className="btn btn-primary">
+          <Link to={`/court/${id}`} className="btn btn-primary">
             Ver turnos disponibles
           </Link>
         </div>
