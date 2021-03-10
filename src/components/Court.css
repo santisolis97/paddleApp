@@ -3,6 +3,7 @@
     height: 250px;
     overflow:hidden;
 }
-.horariosdisponibles{
-    margin-left: 30px;
+
+label{
+    padding :10px;
 }
