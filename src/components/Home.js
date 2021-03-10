@@ -3,11 +3,11 @@ import Card from "./Card";
 import Navbar from "./Navbar";
 import AddCourtModal from "./AddCourtModal";
 import db from "../firebase.config";
-
 function Home() {
   // Required for side-effects
   const initialCourts = [];
   const [courts, setCourts] = useState(initialCourts);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchCourts = async () => {
     db.collection("courts")
@@ -18,6 +18,7 @@ function Home() {
           ...doc.data(),
         }));
         setCourts(data);
+        setIsLoading(false);
       });
   };
   useEffect(() => {
@@ -27,6 +28,11 @@ function Home() {
   return (
     <div>
       <Navbar></Navbar>
+      {isLoading && (
+        <div className="spinner-border text-info" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      )}
       {courts.map(function (item, i) {
         return (
           <Card
